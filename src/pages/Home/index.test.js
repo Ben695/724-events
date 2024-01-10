@@ -1,4 +1,4 @@
-import { fireEvent, render, screen } from "@testing-library/react";
+import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import Home from "./index";
 
 describe("When Form is created", () => {
@@ -21,7 +21,11 @@ describe("When Form is created", () => {
         })
       );
       await screen.findByText("En cours");
-      await screen.findByText("Message envoyé !");
+       // La raison pour laquelle on utilise waitFor avec un délai limite est que la recherche du texte "Envoyer" peut 
+      // prendre un certain temps en fonction de la façon dont le rendu de la composante Form. En utilisant waitFor 
+      // avec un délai limite, on s'assure que le test attend suffisamment longtemps pour que le texte soit affiché, 
+      // tout en évitant que le test ne s'exécute indéfiniment s'il y a un problème et que le texte n'est jamais trouvé.
+      await waitFor(() => screen.findByText("Message envoyé !"), {timeout:2000});
     });
   });
 
