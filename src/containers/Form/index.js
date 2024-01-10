@@ -16,6 +16,9 @@ const Form = ({ onSuccess, onError }) => {
       try {
         await mockContactApi();
         setSending(false);
+        // La fonction onSuccess est une fonction de rappel (callback) qui est passée en tant que prop à la composante Form. 
+        // Elle est destinée à être appelée lorsque la soumission du formulaire est réussie.
+        onSuccess();
       } catch (err) {
         setSending(false);
         onError(err);
