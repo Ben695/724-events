@@ -13,7 +13,12 @@ import Modal from "../../containers/Modal";
 import { useData } from "../../contexts/DataContext";
 
 const Page = () => {
-  const {last} = useData()
+  const { data } = useData()
+  // Cette ligne de code trie les événements en ordre décroissant par date
+  // puis sélectionne le premier élément du tableau trié, ce qui correspond à l'événement le plus récent
+  const last = data?.events.sort((evtA, evtB) =>
+    new Date(evtB.date) - new Date(evtA.date)
+  )[0];
   return <>
     <header>
       <Menu />
@@ -116,13 +121,18 @@ const Page = () => {
     <footer className="row">
       <div className="col presta">
         <h3>Notre derniére prestation</h3>
+        {/* Ajoute "last" pour éliminer les erreurs de console "undefined"
+            => Le composant est rendu conditionnellement avec l'opérateur "&&"
+        */}
+        {last &&(
         <EventCard
           imageSrc={last?.cover}
           title={last?.title}
           date={new Date(last?.date)}
           small
-          label="boom"
+          label="Last Event"
         />
+        )}
       </div>
       <div className="col contact">
         <h3>Contactez-nous</h3>
@@ -130,16 +140,16 @@ const Page = () => {
         <div>01 23 45 67 89</div>
         <div>contact@77events.com</div>
         <div>
-          <a href="#twitch">
+          <a href="https://twitch.tv" target="blank">
             <Icon name="twitch" />
           </a>
-          <a href="#facebook">
+          <a href="https://facebook.com" target="blank">
             <Icon name="facebook" />
           </a>
-          <a href="#twitter">
+          <a href="https://twitter.com" target="blank">
             <Icon name="twitter" />
           </a>
-          <a href="#youtube">
+          <a href="https://youtube.com" target="blank">
             <Icon name="youtube" />
           </a>
         </div>
