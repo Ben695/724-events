@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
-
 import "./style.scss";
+import { getMonth } from "../../helpers/Date";
 
 const ModalEvent = ({ event }) => (
     <div className="ModalEvent">
@@ -13,7 +13,7 @@ const ModalEvent = ({ event }) => (
       </div>
       <div className="ModalEvent__title">
         <div className="ModalEvent__titleLabel">{event.title}</div>
-        <div className="ModalEvent__titlePeriode">{event.periode}</div>
+        <div className="ModalEvent__titlePeriode">{getMonth(new Date(event.date))}</div> 
       </div>
       <div className="ModalEvent__descriptionContainer">
         <h3>Description</h3>
