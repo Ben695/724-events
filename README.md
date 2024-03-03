@@ -40,13 +40,13 @@ Pour démarrer avec ce projet, suivez les instructions ci-dessous :
 1. **Clonez le dépôt** :
 
     ```bash
-    git clone URL_DU_REPO
+    git clone https://github.com/Ben695/724-events.git
     ```
 
 2. **Installez les dépendances** :
 
     ```bash
-    cd chemin_du_projet
+    cd src
     yarn install
     ```
 
